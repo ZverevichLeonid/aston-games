@@ -1,0 +1,14 @@
+.headerRow {
+  background-color: #2e2e2e;
+}
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 32px;
+  img {
+    max-width: 70px;
+    max-height: 70px;
+  }
+}
