@@ -1,5 +1,5 @@
 ## Project status
 
-[![Production](https:github.com/ZverevichLeonid/aston-games/actions/workflows/main.yml/badge.svg)](https:github.com/ZverevichLeonid/aston-games/actions/workflows/main.yml)
+<a href="https://github.com/ZverevichLeonid/aston-games/actions"><img src="https://github.com/ZverevichLeonid/aston-games/actions/workflows/main.yml/badge.svg" /></a>
 
 # TODO
