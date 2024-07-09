@@ -5,12 +5,13 @@ import { gameApi } from '../redux/services/gameService'
 
 export const GamePage = () => {
   const { gameId } = useParams()
-  const { data } = gameApi.useGetGameInfoQuery(gameId ?? '') // Нормальная запись, учитывая, что  gameId =  string | undefined ?
+  const { data } = gameId
+    ? gameApi.useGetGameInfoQuery(gameId)
+    : { data: undefined }
 
   return (
     <>
       <Header />
-      {/* Доделаю позже */}
       {data && <GameInfo {...data} />}
     </>
   )
