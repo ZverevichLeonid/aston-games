@@ -1,8 +1,8 @@
 import s from './GameInfo.module.scss'
-import { transformedSingleGameData } from '../../types/types'
+import { TransformedSingleGameData } from '../../types/types'
 import { BASE_IMG_URL } from '../../utils/urls'
 
-type GameInfoProps = transformedSingleGameData
+type GameInfoProps = TransformedSingleGameData
 
 export const GameInfo = ({
   companies,

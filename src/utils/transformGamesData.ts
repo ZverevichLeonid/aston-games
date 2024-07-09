@@ -1,7 +1,9 @@
-import { rawGameData, transformedGameData } from '../types/types'
+import { RawGameData, TransformedGameData } from '../types/types'
 
-export function transformGamesData(games: rawGameData[]) {
-  const transformedGamesArray: transformedGameData[] = []
+export function transformGamesData(
+  games: RawGameData[],
+): TransformedGameData[] {
+  const transformedGamesArray: TransformedGameData[] = []
   games.map(game => {
     transformedGamesArray.push({
       name: game.name,

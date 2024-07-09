@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type {
-  rawGameData,
-  transformedGameData,
-  rawSingleGameData,
-  transformedSingleGameData,
+  RawGameData,
+  TransformedGameData,
+  RawSingleGameData,
+  TransformedSingleGameData,
 } from '../../types/types'
 import { transformGamesData } from '../../utils/transformGamesData'
 import { transformSingleGameData } from '../../utils/transformSingleGameData'
@@ -17,21 +17,21 @@ export const gameApi = createApi({
     },
   }),
   endpoints: builder => ({
-    getPopularGames: builder.query<transformedGameData[], void>({
+    getPopularGames: builder.query<TransformedGameData[], void>({
       query: () => ({
         url: '/popular',
         method: 'GET',
       }),
-      transformResponse(response: rawGameData[]) {
+      transformResponse(response: RawGameData[]) {
         return transformGamesData(response)
       },
     }),
-    getGameInfo: builder.query<transformedSingleGameData, string>({
+    getGameInfo: builder.query<TransformedSingleGameData, string>({
       query: gameId => ({
         url: `/${gameId}`,
         method: 'GET',
       }),
-      transformResponse(response: rawSingleGameData) {
+      transformResponse(response: RawSingleGameData) {
         return transformSingleGameData(response)
       },
     }),

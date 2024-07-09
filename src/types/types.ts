@@ -1,4 +1,4 @@
-export interface rawGameData {
+export interface RawGameData {
   images: {
     box: {
       [boxType: string]: string
@@ -10,7 +10,7 @@ export interface rawGameData {
   id: number
 }
 
-export interface transformedGameData {
+export interface TransformedGameData {
   name: string
   image: string
   score: string
@@ -86,7 +86,7 @@ interface Genre {
   name: string
 }
 
-export interface rawSingleGameData {
+export interface RawSingleGameData {
   images: Images
   mainChannel: MainChannel
   baseGame: BaseGame
@@ -118,7 +118,7 @@ export interface rawSingleGameData {
   url: string
 }
 
-export interface transformedSingleGameData {
+export interface TransformedSingleGameData {
   name: string
   image: string
   platforms: Platform[]

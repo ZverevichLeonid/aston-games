@@ -1,7 +1,9 @@
-import { rawSingleGameData, transformedSingleGameData } from '../types/types'
+import { RawSingleGameData, TransformedSingleGameData } from '../types/types'
 
-export function transformSingleGameData(game: rawSingleGameData) {
-  const transformedSingleGameData: transformedSingleGameData = {
+export function transformSingleGameData(
+  game: RawSingleGameData,
+): TransformedSingleGameData {
+  const transformedSingleGameData: TransformedSingleGameData = {
     name: game.name,
     image: game.images.masthead.xl,
     companies: game.Companies,
