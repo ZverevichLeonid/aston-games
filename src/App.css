@@ -12,11 +12,16 @@ body {
 }
 
 .container {
-  max-width: 1430px;
+  max-width: 1110px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
 body {
   background-color: #f4f4f8;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
