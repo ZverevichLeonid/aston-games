@@ -1,5 +1,13 @@
+.header {
+  margin-bottom: 4px;
+}
 .headerRow {
   background-color: #2e2e2e;
+}
+.headerLink {
+  display: block;
+  text-decoration: none;
+  max-width: 275px;
 }
 .headerLogo {
   display: flex;
