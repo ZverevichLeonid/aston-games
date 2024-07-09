@@ -1,11 +1,8 @@
 import s from './GameInfo.module.scss'
 import { transformedSingleGameData } from '../../types/types'
+import { BASE_IMG_URL } from '../../utils/urls'
 
 type GameInfoProps = transformedSingleGameData
-
-// У меня в апишке много данных приходит, я трансформировал и оставил только самые важные, как правильно типы записать?
-// Эти типы нужны и в функциях, и в редаксе, и здесь в пропсах. Видел совет, что типы пропсов надо держать в компоненте,
-// Но тогда их придётся экспортировать из этого компонента, что не очень хорошо, наверно.
 
 export const GameInfo = ({
   companies,
@@ -16,15 +13,13 @@ export const GameInfo = ({
   platforms,
   topCriticScore,
 }: GameInfoProps) => {
-  const BASE_URL = 'https://img.opencritic.com/'
-
   return (
     <section>
       <div className="container">
         <div className="">
           <img
             className={s.gameImg}
-            src={`${BASE_URL}${image}`}
+            src={`${BASE_IMG_URL}${image}`}
             alt={`${name} image`}
           />
           <div className={s.gameInfo}>
