@@ -1,14 +1,5 @@
-import './App.css'
-import { GamesList } from './components/GamesList/GamesList'
-import { Header } from './components/Header/Header'
-
+// Могу отказаться от App.tsx? Пока не вижу применения у себя
 function App() {
-  return (
-    <>
-      <Header />
-      <GamesList />
-    </>
-  )
+  return <></>
 }
-
 export default App
