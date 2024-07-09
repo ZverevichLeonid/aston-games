@@ -1,0 +1,63 @@
+.gameImg {
+  margin-bottom: 15px;
+  width: 1110px;
+  height: 626px;
+  backdrop-filter: blur(1600px);
+}
+.gameInfoTitle {
+  margin-bottom: 5px;
+  font-size: 32px;
+}
+.gameInfo {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.gameInfoRight {
+  display: flex;
+  justify-content: flex-end;
+  gap: 25px;
+}
+
+.gameInfoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  max-width: 100px;
+}
+
+.gameInfoBlockValue {
+  background-color: #2e2e2e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+.gameCompanies {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.gameRealeseDate {
+  display: flex;
+  flex-direction: column;
+  span:first-child {
+    margin-bottom: 5px;
+  }
+  span:not(:first-child) {
+    font-weight: 600;
+  }
+}

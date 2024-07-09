@@ -1,7 +1,5 @@
-import "./App.css";
-
+// Могу отказаться от App.tsx? Пока не вижу применения у себя
 function App() {
-  return <>test</>;
+  return <></>
 }
-
-export default App;
+export default App
