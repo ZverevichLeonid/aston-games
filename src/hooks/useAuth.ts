@@ -31,7 +31,7 @@ export function useAuth() {
     })
 
     return () => unsubscribe()
-  }, [auth])
+  }, [auth, dispatch])
 
   return {
     isAuth: !!id,
