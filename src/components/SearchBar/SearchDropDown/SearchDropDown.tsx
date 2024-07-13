@@ -13,7 +13,7 @@ export const SearchDropDown = ({
   isShow,
 }: SearchDropDownProps) => {
   const { data } = gameApi.useGetGameSearchQuery(queryParams, {
-    skip: queryParams.length <= 0,
+    skip: queryParams.length == 0,
   })
 
   const suggestClass = classNames(s.suggestData, {
