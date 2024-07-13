@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
 import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../store'
 
 export const addUrlToHistory: AsyncThunk<
   void,
@@ -58,27 +59,23 @@ export const deleteUrlHistory: AsyncThunk<
   },
 )
 
-export const getHistory: AsyncThunk<
+export const getHistory = createAsyncThunk<
   DocumentData | null,
-  {
-    id: string
-  },
-  {
-    [fields: string]: void // костыль с типами, ts2742
+  void,
+  { state: RootState }
+>('history/getHistory', async (_, { getState }) => {
+  const state = getState()
+  const id = state.user.id
+  const docRef = doc(db, 'users', id!)
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    const history = docSnap.data()
+    return history
+  } else {
+    return null
   }
-> = createAsyncThunk<DocumentData | null, { id: string }>(
-  'history/getHistory',
-  async ({ id }: { id: string }) => {
-    const docRef = doc(db, 'users', id)
-    const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) {
-      const history = docSnap.data()
-      return history
-    } else {
-      return null
-    }
-  },
-)
+})
 
 const initialState: HistoryState = {
   history: [],

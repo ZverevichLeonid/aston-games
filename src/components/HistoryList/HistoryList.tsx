@@ -12,7 +12,7 @@ export const HistoryList = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getHistory({ id: id! }))
+    dispatch(getHistory())
   }, [id, dispatch])
 
   return (
