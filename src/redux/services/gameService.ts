@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type {
+  RawSearchedGames,
   TransformedGameData,
-  RawSingleGameData,
   TransformedSingleGameData,
 } from '../../types/types'
 import { transformGamesData } from '../../utils/transformGamesData'
@@ -29,9 +29,12 @@ export const gameApi = createApi({
         url: `/${gameId}`,
         method: 'GET',
       }),
-      transformResponse(response: RawSingleGameData) {
-        return transformSingleGameData(response)
-      },
+      transformResponse: transformSingleGameData,
+    }),
+    getGameSearch: builder.query<RawSearchedGames[], string>({
+      query: queryParams => ({
+        url: `/search?criteria=${queryParams}`,
+      }),
     }),
   }),
 })
