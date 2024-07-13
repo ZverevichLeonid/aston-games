@@ -1,0 +1,11 @@
+.link {
+  padding: 15px;
+  border: 2px solid #1f3b63;
+  border-radius: 15px;
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: 0.9;
+    background-color: #1f3b63;
+    color: white;
+  }
+}
