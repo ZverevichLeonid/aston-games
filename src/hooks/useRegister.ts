@@ -15,7 +15,6 @@ export const useRegisterUser = () => {
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.refreshToken,
           }),
         )
         navigate('/')

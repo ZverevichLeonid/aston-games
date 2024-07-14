@@ -16,7 +16,6 @@ export interface TransformedGameData {
   score: string
   id: number
 }
-// Нужно ли описывать весь интерфейс апишки? Я кое-как накидал в общих чертах, могу сузить типы
 interface ImageSize {
   [ImageSize: string]: string
 }
@@ -126,4 +125,10 @@ export interface TransformedSingleGameData {
   percentRecommended: string
   companies: Company[]
   firstReleaseDate: string
+}
+
+export interface RawSearchedGames {
+  id: number
+  dist: number
+  name: string
 }

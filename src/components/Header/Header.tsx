@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { SearchBar } from '../SearchBar/SearchBar'
 import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { removeUser } from '../../redux/store/userSlice/userSlice'
@@ -18,6 +19,9 @@ export const Header = () => {
               <img src={headerLogo} alt="logo link to home" />
               <span>ClosedCritic</span>
             </div>
+          </Link>
+          <Link className={s.link} to={`/history`}>
+            History
           </Link>
           {/* Условия переделаю позже */}
           {!isAuth && (
@@ -41,6 +45,7 @@ export const Header = () => {
               LogOut
             </span>
           )}
+          <SearchBar />
         </div>
       </div>
     </header>

@@ -5,9 +5,7 @@ import { gameApi } from '../redux/services/gameService'
 
 export const GamePage = () => {
   const { gameId } = useParams()
-  const { data } = gameId
-    ? gameApi.useGetGameInfoQuery(gameId)
-    : { data: undefined }
+  const { data } = gameApi.useGetGameInfoQuery(gameId!)
 
   return (
     <>
