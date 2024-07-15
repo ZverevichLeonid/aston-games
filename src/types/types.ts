@@ -14,7 +14,7 @@ export interface TransformedGameData {
   name: string
   image: string
   score: string
-  id: number
+  id: string
 }
 interface ImageSize {
   [ImageSize: string]: string
@@ -118,6 +118,7 @@ export interface RawSingleGameData {
 }
 
 export interface TransformedSingleGameData {
+  id: string
   name: string
   image: string
   platforms: Platform[]
