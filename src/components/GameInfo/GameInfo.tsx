@@ -2,6 +2,7 @@ import s from './GameInfo.module.scss'
 import { TransformedSingleGameData } from '../../types/types'
 import { BASE_IMG_URL } from '../../utils/urls'
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton'
+import { useAuth } from '../../hooks/useAuth'
 
 type GameInfoProps = TransformedSingleGameData
 
@@ -15,6 +16,7 @@ export const GameInfo = ({
   platforms,
   topCriticScore,
 }: GameInfoProps) => {
+  const { isAuth } = useAuth()
   return (
     <section>
       <div className="container">
@@ -24,12 +26,14 @@ export const GameInfo = ({
             src={`${BASE_IMG_URL}${image}`}
             alt={`${name} image`}
           />
-          <FavoriteButton
-            gameId={id}
-            image={image}
-            name={name}
-            score={topCriticScore}
-          />
+          {isAuth && (
+            <FavoriteButton
+              gameId={id}
+              image={image}
+              name={name}
+              score={topCriticScore}
+            />
+          )}
           <div className={s.gameInfo}>
             <div className={s.gameInfoLeft}>
               <h1 className={s.gameInfoTitle}>{name}</h1>
