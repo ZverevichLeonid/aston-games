@@ -5,7 +5,6 @@ import {
   updateDoc,
   getDoc,
   arrayRemove,
-  DocumentData,
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
 import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
@@ -60,7 +59,7 @@ export const deleteUrlHistory: AsyncThunk<
 )
 
 export const getHistory = createAsyncThunk<
-  DocumentData | null,
+  string[] | null,
   void,
   { state: RootState }
 >('history/getHistory', async (_, { getState }) => {
@@ -68,12 +67,11 @@ export const getHistory = createAsyncThunk<
   const id = state.user.id
   const docRef = doc(db, 'users', id!)
   const docSnap = await getDoc(docRef)
-
   if (docSnap.exists()) {
     const history = docSnap.data()
-    return history
+    return Array.isArray(history.history) ? history.history : []
   } else {
-    return null
+    return []
   }
 })
 
@@ -105,7 +103,7 @@ const historySlice = createSlice({
     })
     builder.addCase(getHistory.fulfilled, (state, action) => {
       if (action.payload) {
-        state.history = action.payload.history
+        state.history = action.payload
       } else {
         state.history = []
       }

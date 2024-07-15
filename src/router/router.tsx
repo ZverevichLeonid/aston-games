@@ -1,41 +1,27 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from '../pages/HomePage'
-import { ErrorPage } from '../pages/ErrorPage'
-import { GamePage } from '../pages/GamePage'
-import { HistoryPage } from '../pages/HistoryPage'
-import { SearchPage } from '../pages/SearchPage'
-import { SignUp } from '../pages/SignUp'
-import { SignIn } from '../pages/SignIn'
+import { Route, Routes } from 'react-router-dom'
+import { authOnlyRoutes, publicRoutes } from './routerConfig'
+import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute'
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/game/:gameId',
-    element: <GamePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/history',
-    element: <HistoryPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/search',
-    element: <SearchPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/singup',
-    element: <SignUp />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/singin',
-    element: <SignIn />,
-    errorElement: <ErrorPage />,
-  },
-])
+export const Router = ({ isAuth }: { isAuth: boolean }) => {
+  return (
+    <Routes>
+      {publicRoutes.map(route => (
+        <Route
+          key={route.path}
+          path={route.path}
+          element={<route.component />}
+        />
+      ))}
+
+      <Route element={<ProtectedRoute isAllowed={isAuth} />}>
+        {authOnlyRoutes.map(route => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={<route.component />}
+          />
+        ))}
+      </Route>
+    </Routes>
+  )
+}

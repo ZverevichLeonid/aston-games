@@ -4,6 +4,7 @@ export function transformSingleGameData(
   game: RawSingleGameData,
 ): TransformedSingleGameData {
   const transformedSingleGameData: TransformedSingleGameData = {
+    id: game.id.toString(),
     name: game.name,
     image: game.images.masthead.xl,
     companies: game.Companies,

@@ -9,7 +9,7 @@ export function transformGamesData(
       name: game.name,
       image: game.images.box.sm,
       score: game.topCriticScore.toFixed(),
-      id: game.id,
+      id: game.id.toString(),
     })
   })
   return transformedGamesArray
