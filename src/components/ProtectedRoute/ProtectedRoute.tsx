@@ -5,7 +5,7 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute = ({ isAllowed }: ProtectedRouteProps) => {
-  if (isAllowed === false) {
+  if (!isAllowed) {
     return <Navigate to={'/signin'} replace />
   }
   return <Outlet />
