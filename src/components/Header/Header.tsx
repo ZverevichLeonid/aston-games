@@ -20,17 +20,23 @@ export const Header = () => {
               <span>ClosedCritic</span>
             </div>
           </Link>
-          <Link className={s.link} to={`/history`}>
-            History
-          </Link>
-          {/* Условия переделаю позже */}
+          {isAuth && (
+            <Link className={s.link} to={`/history`}>
+              History
+            </Link>
+          )}
+          {isAuth && (
+            <Link className={s.link} to={`/favorites`}>
+              Favorites
+            </Link>
+          )}
           {!isAuth && (
-            <Link className={s.link} to={`/singup`}>
+            <Link className={s.link} to={`/signup`}>
               singUp
             </Link>
           )}
           {!isAuth && (
-            <Link className={s.link} to={`/singin`}>
+            <Link className={s.link} to={`/signin`}>
               singIn
             </Link>
           )}
