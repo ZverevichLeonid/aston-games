@@ -1,0 +1,14 @@
+.gameListTitle {
+  font-size: 32px;
+  font-weight: 300;
+  margin: 15px 0;
+}
+.gameListSubTitle {
+  display: block;
+  margin-bottom: 30px;
+}
+.gameList {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
