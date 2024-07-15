@@ -2,14 +2,14 @@ import { Game } from './Game/Game'
 import { gameApi } from '../../redux/services/gameService'
 import s from './GamesList.module.scss'
 
-export const GamesList = () => {
+const GamesList = () => {
   const { data } = gameApi.useGetPopularGamesQuery()
 
   return (
     <section>
       <div className="container">
         <h1 className={s.gameListTitle}>Popular Games</h1>
-        <span className={s.gameListSubTittle}>
+        <span className={s.gameListSubTitle}>
           Don't miss the most popular games on OpenCritic today
         </span>
         <div className={s.gameList}>
@@ -30,3 +30,4 @@ export const GamesList = () => {
     </section>
   )
 }
+export default GamesList

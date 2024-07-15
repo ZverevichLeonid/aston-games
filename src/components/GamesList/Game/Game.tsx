@@ -17,7 +17,11 @@ export const Game = ({ name, image, score, id }: GameProps) => {
   return (
     <article className={s.gameCard}>
       <Link to={`/game/${id}`}>
-        <img src={`${BASE_IMG_URL}${image}`} alt={`${name} image`} />
+        <img
+          className={s.img}
+          src={`${BASE_IMG_URL}${image}`}
+          alt={`${name} image`}
+        />
         <p className={s.score}>{score}</p>
         <h3 className={s.gameName}>{name}</h3>
       </Link>
