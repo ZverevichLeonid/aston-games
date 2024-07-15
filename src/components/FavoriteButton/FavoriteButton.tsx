@@ -2,8 +2,8 @@ import { useAppDispatch } from '../../hooks/reduxHooks'
 import {
   addGameToFavorites,
   deleteGameFromFavorites,
+  selectGameIsFavorite,
 } from '../../redux/store/favoritesSlice/favoritesSlice'
-import { useAuth } from '../../hooks/useAuth'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import btnActive from '../../assets/btn-active.png'
 import btnNonActive from '../../assets/btn-non-active.png'
@@ -22,12 +22,12 @@ export const FavoriteButton = ({
   name,
   score,
 }: FavoriteButtonProps) => {
-  const { isAuth } = useAuth()
-  const favorites = useAppSelector(state => state.favorites.favorites)
-  const isFavorite = favorites.some(game => game.gameId == gameId)
+  const isFavorite = useAppSelector(state =>
+    selectGameIsFavorite(state, gameId),
+  )
   const dispatch = useAppDispatch()
 
-  return isAuth ? (
+  return (
     <div className={s.box}>
       <img
         className={s.img}
@@ -43,5 +43,5 @@ export const FavoriteButton = ({
         alt="favorite button"
       />
     </div>
-  ) : null
+  )
 }
