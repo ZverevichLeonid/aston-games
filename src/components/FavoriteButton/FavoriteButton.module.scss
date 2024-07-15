@@ -1,0 +1,25 @@
+.box {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  &:hover {
+    scale: 1.1;
+  }
+}
+.active {
+  background-color: red;
+}
+
+.img {
+  width: 30px;
+  height: 30px;
+}
