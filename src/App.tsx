@@ -1,6 +1,6 @@
 import { Loader } from './components/Loader/Loader'
 import { useAuth } from './hooks/useAuth'
-import { Router } from './router/Router'
+import { Router } from './router/Router.tsx'
 
 function App() {
   const { isAuth, isLoading } = useAuth()
