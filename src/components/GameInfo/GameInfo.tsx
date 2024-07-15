@@ -1,10 +1,12 @@
 import s from './GameInfo.module.scss'
 import { TransformedSingleGameData } from '../../types/types'
 import { BASE_IMG_URL } from '../../utils/urls'
+import { FavoriteButton } from '../FavoriteButton/FavoriteButton'
 
 type GameInfoProps = TransformedSingleGameData
 
 export const GameInfo = ({
+  id,
   companies,
   firstReleaseDate,
   image,
@@ -16,11 +18,17 @@ export const GameInfo = ({
   return (
     <section>
       <div className="container">
-        <div className="">
+        <div className={s.gameBox}>
           <img
             className={s.gameImg}
             src={`${BASE_IMG_URL}${image}`}
             alt={`${name} image`}
+          />
+          <FavoriteButton
+            gameId={id}
+            image={image}
+            name={name}
+            score={topCriticScore}
           />
           <div className={s.gameInfo}>
             <div className={s.gameInfoLeft}>
