@@ -7,7 +7,7 @@ import {
   arrayRemove,
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 export const addGameToFavorites = createAsyncThunk<
@@ -122,7 +122,21 @@ const favoritesSlice = createSlice({
       }
     })
   },
+  selectors: {
+    selectAllFavorites: state => state.favorites,
+    selectGameIsFavorite: createSelector(
+      [
+        (state: FavoritesState) => state.favorites,
+        (_: FavoritesState, gameId: string) => gameId,
+      ],
+      (favorites, gameId) => {
+        return favorites.some(game => game.gameId === gameId)
+      },
+    ),
+  },
 })
 
 export const { removeFavorites } = favoritesSlice.actions
 export const { reducer } = favoritesSlice
+export const { selectAllFavorites, selectGameIsFavorite } =
+  favoritesSlice.selectors
