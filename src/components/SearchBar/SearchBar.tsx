@@ -34,8 +34,10 @@ export const SearchBar = () => {
 
   function onSubmitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (isAuth && inputValue.length > 0) {
-      dispatch(addUrlToHistory({ id: id!, url: inputValue }))
+    if (inputValue.length > 0) {
+      if (isAuth) {
+        dispatch(addUrlToHistory({ id: id!, url: inputValue }))
+      }
       navigate(`/search?query=${inputValue}`)
     }
     if (inputRef) {
