@@ -1,42 +1,35 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { useAppSelector } from '../../hooks/reduxHooks'
 import { useAuth } from '../../hooks/useAuth'
-import {
-  getFavorites,
-  selectAllFavorites,
-} from '../../redux/store/favoritesSlice/favoritesSlice'
+import { selectAllFavorites } from '../../redux/store/favoritesSlice/favoritesSlice'
 import { Game } from '../GamesList/Game/Game'
+import { Loader } from '../Loader/Loader'
 import s from './FavoriteList.module.scss'
 
 export const FavoritesList = () => {
-  const { id } = useAuth()
+  const { isAuth } = useAuth()
   const favorites = useAppSelector(selectAllFavorites)
-  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(getFavorites())
-  }, [id, dispatch])
-
-  return (
-    favorites && (
-      <section>
-        <div className="container">
-          <h1 className={s.title}>Favorites games </h1>
-          <div className={s.list}>
-            {favorites.map(favoriteGame => {
-              return (
-                <Game
-                  key={favoriteGame.gameId}
-                  id={favoriteGame.gameId}
-                  image={favoriteGame.image}
-                  name={favoriteGame.name}
-                  score={favoriteGame.score}
-                />
-              )
-            })}
-          </div>
+  return favorites ? (
+    <section>
+      <div className="container">
+        <h1 className={s.title}>Favorites games </h1>
+        <div className={s.list}>
+          {favorites.map(favoriteGame => {
+            return (
+              <Game
+                key={favoriteGame.gameId}
+                id={favoriteGame.gameId}
+                image={favoriteGame.image}
+                name={favoriteGame.name}
+                score={favoriteGame.score}
+                isAuth={isAuth}
+              />
+            )
+          })}
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  ) : (
+    <Loader />
   )
 }
