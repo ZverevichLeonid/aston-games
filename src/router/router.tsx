@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { authOnlyRoutes, publicRoutes } from './routerConfig'
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute'
 
@@ -22,6 +22,7 @@ export const Router = ({ isAuth }: { isAuth: boolean }) => {
           />
         ))}
       </Route>
+      <Route path="*" element={<Navigate to={'/'} />} />
     </Routes>
   )
 }

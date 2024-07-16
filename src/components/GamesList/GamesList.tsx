@@ -1,15 +1,17 @@
 import { Game } from './Game/Game'
 import { gameApi } from '../../redux/services/gameService'
 import s from './GamesList.module.scss'
+import { useAuth } from '../../hooks/useAuth'
 
-export const GamesList = () => {
+const GamesList = () => {
   const { data } = gameApi.useGetPopularGamesQuery()
+  const { isAuth } = useAuth()
 
   return (
     <section>
       <div className="container">
         <h1 className={s.gameListTitle}>Popular Games</h1>
-        <span className={s.gameListSubTittle}>
+        <span className={s.gameListSubTitle}>
           Don't miss the most popular games on OpenCritic today
         </span>
         <div className={s.gameList}>
@@ -22,6 +24,7 @@ export const GamesList = () => {
                   image={game.image}
                   score={game.score}
                   id={game.id}
+                  isAuth={isAuth}
                 />
               )
             })}
@@ -30,3 +33,4 @@ export const GamesList = () => {
     </section>
   )
 }
+export default GamesList

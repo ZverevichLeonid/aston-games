@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { SearchDropDown } from './SearchDropDown/SearchDropDown'
 import { useDebounce } from 'use-debounce'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { addUrlToHistory } from '../../redux/store/historySlice/historySlice'
 import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../hooks/reduxHooks'
+import { ThemeContext } from '../ThemeProvider/ThemeProvider'
 import searchImg from '../../assets/search-img1.png'
 import s from './SearchBar.module.scss'
 
@@ -14,6 +15,7 @@ export const SearchBar = () => {
   const [inputValue, setInputValue] = useState(searchParams.get('query') || '')
   const [queryParams] = useDebounce(inputValue, 500)
   const { isAuth, id } = useAuth()
+  const { theme } = useContext(ThemeContext)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const navigate = useNavigate()
@@ -50,7 +52,7 @@ export const SearchBar = () => {
       <div className={s.row}>
         <div className={s.suggest}>
           <input
-            className={s.input}
+            className={theme === 'light' ? s.input : s.inputDark}
             value={inputValue}
             onChange={handleChangeInput}
             onFocus={onFocusHandler}

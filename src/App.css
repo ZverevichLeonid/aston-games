@@ -13,16 +13,22 @@ body {
 }
 
 .container {
-  max-width: 1110px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-body {
+body.light {
   background-color: #f4f4f8;
+  color: black;
+}
+
+body.dark {
+  background-color: #2e2e2e;
+  color: white;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }

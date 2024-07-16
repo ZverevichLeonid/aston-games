@@ -1,0 +1,19 @@
+.form {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.input {
+  width: 300px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.btn {
+  width: 150px;
+  height: 35px;
+  border-radius: 15px;
+}

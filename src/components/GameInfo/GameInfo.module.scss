@@ -5,7 +5,6 @@
   margin-bottom: 15px;
   width: 1110px;
   height: 626px;
-  backdrop-filter: blur(1600px);
 }
 .gameInfoTitle {
   margin-bottom: 5px;
@@ -13,6 +12,14 @@
 }
 .gameInfo {
   background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.gameInfoDark {
+  background-color: rgb(71, 71, 71);
   border-radius: 15px;
   padding: 15px;
   display: grid;
@@ -38,6 +45,18 @@
 .gameInfoBlockValue {
   background-color: #2e2e2e;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+.gameInfoBlockValueDark {
+  background-color: #ffffff;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,12 @@
+.btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}

@@ -1,8 +1,10 @@
-import s from './GameInfo.module.scss'
 import { TransformedSingleGameData } from '../../types/types'
 import { BASE_IMG_URL } from '../../utils/urls'
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton'
 import { useAuth } from '../../hooks/useAuth'
+import { useContext } from 'react'
+import { ThemeContext } from '../ThemeProvider/ThemeProvider'
+import s from './GameInfo.module.scss'
 
 type GameInfoProps = TransformedSingleGameData
 
@@ -17,6 +19,8 @@ export const GameInfo = ({
   topCriticScore,
 }: GameInfoProps) => {
   const { isAuth } = useAuth()
+  const { theme } = useContext(ThemeContext)
+
   return (
     <section>
       <div className="container">
@@ -34,7 +38,7 @@ export const GameInfo = ({
               score={topCriticScore}
             />
           )}
-          <div className={s.gameInfo}>
+          <div className={theme === 'light' ? s.gameInfo : s.gameInfoDark}>
             <div className={s.gameInfoLeft}>
               <h1 className={s.gameInfoTitle}>{name}</h1>
               <p className={s.gameCompanies}>
@@ -51,11 +55,25 @@ export const GameInfo = ({
             </div>
             <div className={s.gameInfoRight}>
               <p className={s.gameInfoBlock}>
-                <span className={s.gameInfoBlockValue}>{topCriticScore}</span>
+                <span
+                  className={
+                    theme === 'light'
+                      ? s.gameInfoBlockValue
+                      : s.gameInfoBlockValueDark
+                  }
+                >
+                  {topCriticScore}
+                </span>
                 <span>Top Critic Average</span>
               </p>
               <p className={s.gameInfoBlock}>
-                <span className={s.gameInfoBlockValue}>
+                <span
+                  className={
+                    theme === 'light'
+                      ? s.gameInfoBlockValue
+                      : s.gameInfoBlockValueDark
+                  }
+                >
                   {percentRecommended}%
                 </span>
                 <span>Critics Recommend</span>
