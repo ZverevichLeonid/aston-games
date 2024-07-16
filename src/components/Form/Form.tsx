@@ -9,7 +9,7 @@ interface FormProps {
 
 export const Form = ({ onSubmit, title }: FormProps) => {
   const [email, setEmail] = useState('')
-  const [password, sePassword] = useState('')
+  const [password, setPassword] = useState('')
 
   return (
     <>
@@ -33,7 +33,7 @@ export const Form = ({ onSubmit, title }: FormProps) => {
         <input
           className={s.input}
           value={password}
-          onChange={e => sePassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           type="password"
           placeholder="password"
           required

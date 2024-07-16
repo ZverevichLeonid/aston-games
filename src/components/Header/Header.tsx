@@ -22,7 +22,7 @@ export const Header = () => {
                 <span>ClosedCritic</span>
               </div>
             </Link>
-            <ThemeToggle />{' '}
+            <ThemeToggle />
           </div>
           {isAuth && (
             <Link className={s.link} to={`/history`}>
