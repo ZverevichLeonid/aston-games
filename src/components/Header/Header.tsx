@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../hooks/reduxHooks'
 import { removeUser } from '../../redux/store/userSlice/userSlice'
 import headerLogo from '../../assets/logo.png'
 import s from './Header.module.scss'
+import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
 
 export const Header = () => {
   const { isAuth, signOut } = useAuth()
@@ -14,12 +15,15 @@ export const Header = () => {
     <header className={s.header}>
       <div className="container">
         <div className={s.headerRow}>
-          <Link className={s.headerLink} to={'/'}>
-            <div className={s.headerLogo}>
-              <img src={headerLogo} alt="logo link to home" />
-              <span>ClosedCritic</span>
-            </div>
-          </Link>
+          <div className={s.boxLogo}>
+            <Link className={s.headerLink} to={'/'}>
+              <div className={s.headerLogo}>
+                <img src={headerLogo} alt="logo link to home" />
+                <span>ClosedCritic</span>
+              </div>
+            </Link>
+            <ThemeToggle />{' '}
+          </div>
           {isAuth && (
             <Link className={s.link} to={`/history`}>
               History

@@ -2,6 +2,8 @@ import { SearchResult } from '../SearchResult/SearchResult'
 import { gameApi } from '../../../redux/services/gameService'
 import classNames from 'classnames'
 import s from './SearchDropDown.module.scss'
+import { useContext } from 'react'
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider'
 
 interface SearchDropDownProps {
   queryParams: string
@@ -16,8 +18,12 @@ export const SearchDropDown = ({
     skip: queryParams.length === 0,
   })
 
-  const suggestClass = classNames(s.suggestData, {
+  const { theme } = useContext(ThemeContext)
+
+  const suggestClass = classNames({
     [s.active]: isShow && data,
+    [s.suggestData]: theme === 'light',
+    [s.suggestDataDark]: theme === 'dark',
   })
 
   return (

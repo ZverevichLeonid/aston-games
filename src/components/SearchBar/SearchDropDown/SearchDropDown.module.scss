@@ -12,6 +12,22 @@
   padding: 15px;
   z-index: 100;
 }
+
+.suggestDataDark {
+  position: absolute;
+  display: none;
+  overflow-y: auto;
+  top: 50px;
+  left: 0;
+  max-height: 300px;
+  background-color: #2e2e2e;
+  gap: 5px;
+  width: 100%;
+  border-radius: 15px;
+  padding: 15px;
+  z-index: 100;
+}
+
 .active {
   display: flex;
   flex-direction: column;
