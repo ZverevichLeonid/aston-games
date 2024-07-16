@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { BASE_IMG_URL } from '../../../utils/urls'
 import { FavoriteButton } from '../../FavoriteButton/FavoriteButton'
 import { useAuth } from '../../../hooks/useAuth'
+import PropTypes from 'prop-types'
 import s from './Game.module.scss'
 
 interface GameProps {
@@ -30,4 +31,11 @@ export const Game = ({ name, image, score, id }: GameProps) => {
       )}
     </article>
   )
+}
+
+Game.propTypes = {
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  score: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 }

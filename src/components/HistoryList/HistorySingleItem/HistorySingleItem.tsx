@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { deleteUrlHistory } from '../../../redux/store/historySlice/historySlice'
 import { useAppDispatch } from '../../../hooks/reduxHooks'
+import PropTypes from 'prop-types'
 import s from './HistorySingleItem.module.scss'
 
 interface HistorySingleItemProps {
@@ -24,4 +25,9 @@ export const HistorySingleItem = ({ url, id }: HistorySingleItemProps) => {
       </span>
     </div>
   )
+}
+
+HistorySingleItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 }
