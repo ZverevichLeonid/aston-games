@@ -19,7 +19,7 @@ export const useRegisterUser = () => {
         )
         navigate('/')
       })
-      .catch(() => alert('email already in use'))
+      .catch(e => alert(e.toString()))
   }
   return handleRegister
 }
