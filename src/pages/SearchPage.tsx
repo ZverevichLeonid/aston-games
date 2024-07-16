@@ -2,16 +2,17 @@ import { useSearchParams } from 'react-router-dom'
 import { Header } from '../components/Header/Header'
 import { gameApi } from '../redux/services/gameService'
 import { SearchList } from '../components/SearchList/SearchList'
+import { Loader } from '../components/Loader/Loader'
 
 export const SearchPage = () => {
   const [searchParams] = useSearchParams()
   const queryParams = searchParams.get('query')
-  const { data } = gameApi.useGetGameSearchQuery(queryParams!)
+  const { data, isLoading } = gameApi.useGetGameSearchQuery(queryParams!)
 
   return (
     <>
       <Header />
-      {data ? <SearchList data={data} /> : <span>No data</span>}
+      {!isLoading ? <SearchList data={data!} /> : <Loader />}
     </>
   )
 }
