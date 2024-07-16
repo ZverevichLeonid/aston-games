@@ -1,13 +1,16 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { useAuth } from '../../hooks/useAuth'
-import { getFavorites } from '../../redux/store/favoritesSlice/favoritesSlice'
+import {
+  getFavorites,
+  selectAllFavorites,
+} from '../../redux/store/favoritesSlice/favoritesSlice'
 import { Game } from '../GamesList/Game/Game'
 import s from './FavoriteList.module.scss'
 
 export const FavoritesList = () => {
   const { id } = useAuth()
-  const favorites = useAppSelector(state => state.favorites.favorites)
+  const favorites = useAppSelector(selectAllFavorites)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

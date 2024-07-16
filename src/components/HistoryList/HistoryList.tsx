@@ -1,4 +1,7 @@
-import { getHistory } from '../../redux/store/historySlice/historySlice'
+import {
+  getHistory,
+  selectAllHistory,
+} from '../../redux/store/historySlice/historySlice'
 import { useAuth } from '../../hooks/useAuth'
 import { useEffect } from 'react'
 import { HistorySingleItem } from './HistorySingleItem/HistorySingleItem'
@@ -8,7 +11,7 @@ import s from './HistoryList.module.scss'
 
 export const HistoryList = () => {
   const { id } = useAuth()
-  const history = useAppSelector(state => state.history.history)
+  const history = useAppSelector(selectAllHistory)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

@@ -109,7 +109,11 @@ const historySlice = createSlice({
       }
     })
   },
+  selectors: {
+    selectAllHistory: state => state.history,
+  },
 })
 
 export const { removeHistory } = historySlice.actions
 export const { reducer } = historySlice
+export const { selectAllHistory } = historySlice.selectors

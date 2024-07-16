@@ -4,8 +4,8 @@ import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { removeUser } from '../../redux/store/userSlice/userSlice'
 import headerLogo from '../../assets/logo.png'
-import s from './Header.module.scss'
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
+import s from './Header.module.scss'
 
 export const Header = () => {
   const { isAuth, signOut } = useAuth()
