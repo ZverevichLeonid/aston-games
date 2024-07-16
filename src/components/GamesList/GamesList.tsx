@@ -1,9 +1,11 @@
 import { Game } from './Game/Game'
 import { gameApi } from '../../redux/services/gameService'
 import s from './GamesList.module.scss'
+import { useAuth } from '../../hooks/useAuth'
 
 const GamesList = () => {
   const { data } = gameApi.useGetPopularGamesQuery()
+  const { isAuth } = useAuth()
 
   return (
     <section>
@@ -22,6 +24,7 @@ const GamesList = () => {
                   image={game.image}
                   score={game.score}
                   id={game.id}
+                  isAuth={isAuth}
                 />
               )
             })}

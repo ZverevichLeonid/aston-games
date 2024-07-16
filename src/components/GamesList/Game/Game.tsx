@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { BASE_IMG_URL } from '../../../utils/urls'
 import { FavoriteButton } from '../../FavoriteButton/FavoriteButton'
-import { useAuth } from '../../../hooks/useAuth'
 import PropTypes from 'prop-types'
 import s from './Game.module.scss'
 
@@ -10,11 +9,10 @@ interface GameProps {
   image: string
   score: string
   id: string
+  isAuth: boolean
 }
 
-export const Game = ({ name, image, score, id }: GameProps) => {
-  const { isAuth } = useAuth()
-
+export const Game = ({ name, image, score, id, isAuth }: GameProps) => {
   return (
     <article className={s.gameCard}>
       <Link to={`/game/${id}`}>
