@@ -19,17 +19,19 @@ export const HistoryList = () => {
   }, [id, dispatch])
 
   return (
-    history && (
-      <section>
-        <div className="container">
-          <h1 className={s.title}>Search history</h1>
-          <div className={s.list}>
-            {history.map(url => {
+    <section>
+      <div className="container">
+        <h1 className={s.title}>Search history</h1>
+        <div className={s.list}>
+          {history.length > 0 ? (
+            history.map(url => {
               return <HistorySingleItem key={url} url={url} id={id!} />
-            })}
-          </div>
+            })
+          ) : (
+            <span className={s.empty}>History list is empty</span>
+          )}
         </div>
-      </section>
-    )
+      </div>
+    </section>
   )
 }
