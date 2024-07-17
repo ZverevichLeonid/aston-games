@@ -23,7 +23,11 @@ const userSlice = createSlice({
       state.email = null
     },
   },
+  selectors: {
+    selectUser: state => state,
+  },
 })
 
 export const { setUser, removeUser } = userSlice.actions
 export const { reducer } = userSlice
+export const { selectUser } = userSlice.selectors

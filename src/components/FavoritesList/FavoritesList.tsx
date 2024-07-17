@@ -14,18 +14,22 @@ export const FavoritesList = () => {
       <div className="container">
         <h1 className={s.title}>Favorites games </h1>
         <div className={s.list}>
-          {favorites.map(favoriteGame => {
-            return (
-              <Game
-                key={favoriteGame.gameId}
-                id={favoriteGame.gameId}
-                image={favoriteGame.image}
-                name={favoriteGame.name}
-                score={favoriteGame.score}
-                isAuth={isAuth}
-              />
-            )
-          })}
+          {favorites.length > 0 ? (
+            favorites.map(favoriteGame => {
+              return (
+                <Game
+                  key={favoriteGame.gameId}
+                  id={favoriteGame.gameId}
+                  image={favoriteGame.image}
+                  name={favoriteGame.name}
+                  score={favoriteGame.score}
+                  isAuth={isAuth}
+                />
+              )
+            })
+          ) : (
+            <span className={s.empty}>Favorites list is empty</span>
+          )}
         </div>
       </div>
     </section>
