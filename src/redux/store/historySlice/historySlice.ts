@@ -7,49 +7,42 @@ import {
   arrayRemove,
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
-import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-export const addUrlToHistory: AsyncThunk<
-  void,
-  {
-    id: string
-    url: string
-  },
-  {
-    [fields: string]: void // костыль с типами, ts2742
-  }
-> = createAsyncThunk(
-  'history/addUrlToHistory',
-  async ({ id, url }: { id: string; url: string }) => {
-    const docRef = doc(db, 'users', id)
-    const docSnap = await getDoc(docRef)
-    if (!docSnap.exists()) {
-      await setDoc(docRef, {
-        history: [url],
-      })
-    } else {
-      await updateDoc(docRef, {
-        history: arrayUnion(url),
-      })
-    }
-  },
-)
+export const addUrlToHistory = createAsyncThunk<
+  void, // Return type of the payload creator
+  { url: string }, // First argument to the payload creator
+  { state: RootState } // Types for ThunkAPI
+>('history/addUrlToHistory', async ({ url }: { url: string }, { getState }) => {
+  const state = getState()
+  const id = state.user.id
+  const docRef = doc(db, 'users', id!)
+  const docSnap = await getDoc(docRef)
 
-export const deleteUrlHistory: AsyncThunk<
-  void,
-  {
-    id: string
-    url: string
-  },
-  {
-    [fields: string]: void // костыль с типами, ts2742
+  if (!docSnap.exists()) {
+    await setDoc(docRef, {
+      history: [url],
+    })
+  } else {
+    await updateDoc(docRef, {
+      history: arrayUnion(url),
+    })
   }
-> = createAsyncThunk(
+})
+
+export const deleteUrlHistory = createAsyncThunk<
+  void,
+  { url: string },
+  { state: RootState }
+>(
   'history/deleteUrlHistory',
-  async ({ id, url }: { id: string; url: string }) => {
-    const docRef = doc(db, 'users', id)
+  async ({ url }: { url: string }, { getState }) => {
+    const state = getState()
+    const id = state.user.id
+    const docRef = doc(db, 'users', id!)
     const docSnap = await getDoc(docRef)
+
     if (docSnap.exists()) {
       await updateDoc(docRef, {
         history: arrayRemove(url),
@@ -59,7 +52,7 @@ export const deleteUrlHistory: AsyncThunk<
 )
 
 export const getHistory = createAsyncThunk<
-  string[] | null,
+  string[],
   void,
   { state: RootState }
 >('history/getHistory', async (_, { getState }) => {
@@ -67,6 +60,7 @@ export const getHistory = createAsyncThunk<
   const id = state.user.id
   const docRef = doc(db, 'users', id!)
   const docSnap = await getDoc(docRef)
+
   if (docSnap.exists()) {
     const history = docSnap.data()
     return Array.isArray(history.history) ? history.history : []

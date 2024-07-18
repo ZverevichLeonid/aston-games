@@ -81,10 +81,12 @@ export const getFavorites = createAsyncThunk<
 
 const initialState: FavoritesState = {
   favorites: [],
+  isLoading: false,
 }
 
 export interface FavoritesState {
   favorites: Favorite[]
+  isLoading: boolean
 }
 
 export interface Favorite {
@@ -103,18 +105,30 @@ const favoritesSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(addGameToFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(addGameToFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       state.favorites.push({
         ...action.meta.arg,
       })
     })
+    builder.addCase(deleteGameFromFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(deleteGameFromFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       const arrayWithDeletedItem = state.favorites.filter(
         item => item.gameId !== action.meta.arg.gameId,
       )
       state.favorites = arrayWithDeletedItem
     })
+    builder.addCase(getFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(getFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       if (action.payload) {
         state.favorites = action.payload
       } else {
@@ -123,6 +137,7 @@ const favoritesSlice = createSlice({
     })
   },
   selectors: {
+    selectIsLoading: state => state.isLoading,
     selectAllFavorites: state => state.favorites,
     selectGameIsFavorite: createSelector(
       [
@@ -138,5 +153,5 @@ const favoritesSlice = createSlice({
 
 export const { removeFavorites } = favoritesSlice.actions
 export const { reducer } = favoritesSlice
-export const { selectAllFavorites, selectGameIsFavorite } =
+export const { selectAllFavorites, selectGameIsFavorite, selectIsLoading } =
   favoritesSlice.selectors

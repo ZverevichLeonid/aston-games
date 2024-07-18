@@ -1,7 +1,7 @@
 import { Game } from './Game/Game'
 import { gameApi } from '../../redux/services/gameService'
-import s from './GamesList.module.scss'
 import { useAuth } from '../../hooks/useAuth'
+import s from './GamesList.module.scss'
 
 const GamesList = () => {
   const { data } = gameApi.useGetPopularGamesQuery()
