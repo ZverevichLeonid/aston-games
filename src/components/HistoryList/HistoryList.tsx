@@ -1,21 +1,11 @@
-import {
-  getHistory,
-  selectAllHistory,
-} from '../../redux/store/historySlice/historySlice'
-import { useEffect } from 'react'
+import { selectAllHistory } from '../../redux/store/historySlice/historySlice'
 import { HistorySingleItem } from './HistorySingleItem/HistorySingleItem'
-import { useAppDispatch } from '../../hooks/reduxHooks'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import { FixedSizeList as List } from 'react-window'
 import s from './HistoryList.module.scss'
 
 export const HistoryList = () => {
   const history = useAppSelector(selectAllHistory)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(getHistory())
-  }, [dispatch])
 
   return (
     <section>
