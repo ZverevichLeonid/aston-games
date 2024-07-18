@@ -3,6 +3,7 @@ import {
   addGameToFavorites,
   deleteGameFromFavorites,
   selectGameIsFavorite,
+  selectIsLoading,
 } from '../../redux/store/favoritesSlice/favoritesSlice'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import btnActive from '../../assets/btn-active.png'
@@ -25,10 +26,11 @@ export const FavoriteButton = ({
   const isFavorite = useAppSelector(state =>
     selectGameIsFavorite(state, gameId),
   )
+  const isLoading = useAppSelector(selectIsLoading)
   const dispatch = useAppDispatch()
 
   return (
-    <div className={s.box}>
+    <button disabled={isLoading} className={s.box}>
       <img
         className={s.img}
         src={isFavorite ? btnActive : btnNonActive}
@@ -42,6 +44,6 @@ export const FavoriteButton = ({
         }}
         alt="favorite button"
       />
-    </div>
+    </button>
   )
 }
