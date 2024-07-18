@@ -12,6 +12,7 @@ import { RootState } from '../store'
 
 export interface HistoryState {
   history: string[]
+  isLoading: boolean
 }
 
 export const addUrlToHistory = createAsyncThunk<
@@ -75,6 +76,7 @@ export const getHistory = createAsyncThunk<
 
 const initialState: HistoryState = {
   history: [],
+  isLoading: false,
 }
 
 const historySlice = createSlice({
@@ -86,16 +88,28 @@ const historySlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(addUrlToHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(addUrlToHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       state.history.push(action.meta.arg.url)
     })
+    builder.addCase(deleteUrlHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(deleteUrlHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       const arrayWithDeletedItem = state.history.filter(
         item => item !== action.meta.arg.url,
       )
       state.history = arrayWithDeletedItem
     })
+    builder.addCase(getHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(getHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       if (action.payload) {
         state.history = action.payload
       } else {
@@ -105,9 +119,10 @@ const historySlice = createSlice({
   },
   selectors: {
     selectAllHistory: state => state.history,
+    selectIsLoading: state => state.isLoading,
   },
 })
 
 export const { removeHistory } = historySlice.actions
 export const { reducer } = historySlice
-export const { selectAllHistory } = historySlice.selectors
+export const { selectAllHistory, selectIsLoading } = historySlice.selectors
