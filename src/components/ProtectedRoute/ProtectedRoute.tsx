@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 interface ProtectedRouteProps {
   isAllowed: boolean
 }
