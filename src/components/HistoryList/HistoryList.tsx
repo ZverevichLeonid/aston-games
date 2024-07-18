@@ -2,7 +2,6 @@ import {
   getHistory,
   selectAllHistory,
 } from '../../redux/store/historySlice/historySlice'
-import { useAuth } from '../../hooks/useAuth'
 import { useEffect } from 'react'
 import { HistorySingleItem } from './HistorySingleItem/HistorySingleItem'
 import { useAppDispatch } from '../../hooks/reduxHooks'
@@ -11,7 +10,6 @@ import { FixedSizeList as List } from 'react-window'
 import s from './HistoryList.module.scss'
 
 export const HistoryList = () => {
-  const { id } = useAuth()
   const history = useAppSelector(selectAllHistory)
   const dispatch = useAppDispatch()
 
@@ -26,7 +24,7 @@ export const HistoryList = () => {
         <div>
           {history.length > 0 ? (
             <List
-              itemData={{ history: history, id: id! }}
+              itemData={{ history: history }}
               itemSize={53}
               width={1100}
               height={250}

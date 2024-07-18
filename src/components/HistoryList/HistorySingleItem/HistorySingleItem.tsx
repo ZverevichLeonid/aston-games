@@ -6,7 +6,6 @@ import s from './HistorySingleItem.module.scss'
 interface HistorySingleItemProps {
   data: {
     history: string[]
-    id: string
   }
   index: number
   style: React.CSSProperties
