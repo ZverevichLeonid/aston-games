@@ -10,6 +10,7 @@ export const ProtectedRoute = ({ isAllowed }: ProtectedRouteProps) => {
   }
   return <Outlet />
 }
+
 ProtectedRoute.propTypes = {
   isAllowed: PropTypes.bool.isRequired,
 }
