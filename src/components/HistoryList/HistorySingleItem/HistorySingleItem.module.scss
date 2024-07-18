@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  border: 2px solid #1f3b63;
   border-radius: 15px;
+  outline: 1px solid #1f3b63;
+  outline-offset: -5px;
+  outline-style: ridge;
   transition: all 0.2s ease;
 }
 .url:hover {

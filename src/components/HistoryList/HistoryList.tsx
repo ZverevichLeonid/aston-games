@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { HistorySingleItem } from './HistorySingleItem/HistorySingleItem'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { useAppSelector } from '../../hooks/reduxHooks'
+import { FixedSizeList as List } from 'react-window'
 import s from './HistoryList.module.scss'
 
 export const HistoryList = () => {
@@ -16,17 +17,23 @@ export const HistoryList = () => {
 
   useEffect(() => {
     dispatch(getHistory())
-  }, [id, dispatch])
+  }, [dispatch])
 
   return (
     <section>
       <div className="container">
         <h1 className={s.title}>Search history</h1>
-        <div className={s.list}>
+        <div>
           {history.length > 0 ? (
-            history.map(url => {
-              return <HistorySingleItem key={url} url={url} id={id!} />
-            })
+            <List
+              itemData={{ history: history, id: id! }}
+              itemSize={53}
+              width={1100}
+              height={250}
+              itemCount={history.length}
+            >
+              {HistorySingleItem}
+            </List>
           ) : (
             <span className={s.empty}>History list is empty</span>
           )}
