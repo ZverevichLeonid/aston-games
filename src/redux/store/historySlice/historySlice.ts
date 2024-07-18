@@ -10,6 +10,10 @@ import { db } from '../../../firebase/db.config'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
+export interface HistoryState {
+  history: string[]
+}
+
 export const addUrlToHistory = createAsyncThunk<
   void, // Return type of the payload creator
   { url: string }, // First argument to the payload creator
@@ -71,10 +75,6 @@ export const getHistory = createAsyncThunk<
 
 const initialState: HistoryState = {
   history: [],
-}
-
-export interface HistoryState {
-  history: string[]
 }
 
 const historySlice = createSlice({

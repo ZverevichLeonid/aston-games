@@ -10,6 +10,18 @@ import { db } from '../../../firebase/db.config'
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
+export interface FavoritesState {
+  favorites: Favorite[]
+  isLoading: boolean
+}
+
+export interface Favorite {
+  name: string
+  image: string
+  score: string
+  gameId: string
+}
+
 export const addGameToFavorites = createAsyncThunk<
   void,
   Favorite,
@@ -84,18 +96,6 @@ const initialState: FavoritesState = {
   isLoading: false,
 }
 
-export interface FavoritesState {
-  favorites: Favorite[]
-  isLoading: boolean
-}
-
-export interface Favorite {
-  name: string
-  image: string
-  score: string
-  gameId: string
-}
-
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
@@ -144,7 +144,7 @@ const favoritesSlice = createSlice({
         (state: FavoritesState) => state.favorites,
         (_: FavoritesState, gameId: string) => gameId,
       ],
-      (favorites, gameId) => {
+      (favorites: Favorite[], gameId: string): boolean => {
         return favorites.some(game => game.gameId === gameId)
       },
     ),

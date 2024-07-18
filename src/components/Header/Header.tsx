@@ -3,8 +3,8 @@ import { SearchBar } from '../SearchBar/SearchBar'
 import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { removeUser } from '../../redux/store/userSlice/userSlice'
-import headerLogo from '../../assets/logo.png'
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
+import headerLogo from '../../assets/logo.png'
 import s from './Header.module.scss'
 
 export const Header = () => {
