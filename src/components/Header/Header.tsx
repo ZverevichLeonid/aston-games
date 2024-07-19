@@ -11,6 +11,11 @@ export const Header = () => {
   const { isAuth, signOut } = useAuth()
   const dispatch = useAppDispatch()
 
+  const handleClick = () => {
+    dispatch(removeUser())
+    signOut()
+  }
+
   return (
     <header className={s.header}>
       <div className="container">
@@ -45,13 +50,7 @@ export const Header = () => {
             </Link>
           )}
           {isAuth && (
-            <span
-              className={s.link}
-              onClick={() => {
-                dispatch(removeUser())
-                signOut()
-              }}
-            >
+            <span className={s.link} onClick={handleClick}>
               LogOut
             </span>
           )}

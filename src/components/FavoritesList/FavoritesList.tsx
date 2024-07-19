@@ -12,10 +12,11 @@ export const FavoritesList = () => {
   const { isAuth } = useAuth()
   const favorites = useAppSelector(selectAllFavorites)
   const isLoading = useAppSelector(selectIsLoading)
+
   return (
     <section>
       <div className="container">
-        <h1 className={s.title}>Favorites games </h1>
+        <h1 className={s.title}>Favorites games</h1>
         <div className={s.list}>
           {isLoading && <Loader />}
           {favorites.length > 0 &&
