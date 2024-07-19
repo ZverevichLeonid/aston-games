@@ -81,7 +81,7 @@ npm run dev
         - [x] Проверки Eslint, TS, build
     - [x] Настроен CD: [Deploy Link](https://aston-games.vercel.app/)
           
-- [x] Реализована [**виртуализация списков**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/HistoryList/HistoryList.tsx) (Нужен список истории не меньше 6 единиц. Рендер списка только в видимой области пользователя)
+- [x] Реализована [**виртуализация списков**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/HistoryList/HistoryList.tsx) (Нужен список истории не меньше 6 единиц. Рендер элементов списка только в видимой области пользователя)
       
 - [x] Используются [**мемоизированные селекторы** (createSelector)](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/store/favoritesSlice/favoritesSlice.tsx)
       
