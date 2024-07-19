@@ -5,10 +5,16 @@ import {
   updateDoc,
   getDoc,
   arrayRemove,
+  FirestoreDataConverter,
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
+
+interface UserData {
+  favorites: Favorite[]
+  history: string[]
+}
 
 export interface FavoritesState {
   favorites: Favorite[]
@@ -55,20 +61,35 @@ export const addGameToFavorites = createAsyncThunk<
   },
 )
 
+const favoritesConverter: FirestoreDataConverter<UserData> = {
+  toFirestore(user: UserData) {
+    return { favorites: user.favorites, history: user.history }
+  },
+  fromFirestore(snapshot, options): UserData {
+    const data = snapshot.data(options)!
+    return {
+      favorites: data.favorites,
+      history: data.history,
+    }
+  },
+}
+
 export const deleteGameFromFavorites = createAsyncThunk<
   void,
   Favorite,
   { state: RootState }
 >(
   'favorites/deleteGameFromFavorites',
-  async ({ gameId, image, name, score }: Favorite, { getState }) => {
+  async ({ gameId }: Favorite, { getState }) => {
     const state = getState()
     const id = state.user.id
-    const docRef = doc(db, 'users', id!)
+    const docRef = doc(db, 'users', id!).withConverter(favoritesConverter)
     const docSnap = await getDoc(docRef)
+    const items = docSnap.data()?.favorites
+    const objectToRemove = items!.find(item => item.gameId === gameId)
     if (docSnap.exists()) {
       await updateDoc(docRef, {
-        favorites: arrayRemove({ gameId, name, image, score }),
+        favorites: arrayRemove(objectToRemove),
       })
     }
   },
