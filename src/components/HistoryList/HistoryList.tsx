@@ -11,6 +11,7 @@ import s from './HistoryList.module.scss'
 export const HistoryList = () => {
   const history = useAppSelector(selectAllHistory)
   const isLoading = useAppSelector(selectIsLoading)
+
   return (
     <section>
       <div className="container">
