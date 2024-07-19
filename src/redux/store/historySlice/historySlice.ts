@@ -106,7 +106,7 @@ const historySlice = createSlice({
       state.history = arrayWithDeletedItem
     })
     builder.addCase(getHistory.pending, state => {
-      state.isLoading = true
+      if (state.history.length === 0) state.isLoading = true
     })
     builder.addCase(getHistory.fulfilled, (state, action) => {
       state.isLoading = false

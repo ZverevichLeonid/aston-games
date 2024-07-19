@@ -6,6 +6,7 @@ import { useErrorBoundary } from 'react-error-boundary'
 export const ErrorPage = () => {
   const navigate = useNavigate()
   const { resetBoundary } = useErrorBoundary()
+
   useEffect(() => {
     setTimeout(() => {
       resetBoundary()

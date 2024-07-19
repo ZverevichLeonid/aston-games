@@ -42,14 +42,14 @@ export const GameInfo = ({
             <div className={s.gameInfoLeft}>
               <h1 className={s.gameInfoTitle}>{name}</h1>
               <p className={s.gameCompanies}>
-                {companies.map(company => {
-                  return <span key={company.name}>{company.name}</span>
+                {companies.map((company, index) => {
+                  return <span key={index}>{company.name}</span>
                 })}
               </p>
               <p className={s.gameRealeseDate}>
                 <span>Realese Date: {firstReleaseDate}</span>
-                {platforms.map(platform => {
-                  return <span key={platform.name}>{platform.name}</span>
+                {platforms.map((platform, index) => {
+                  return <span key={index}>{platform.name}</span>
                 })}
               </p>
             </div>
