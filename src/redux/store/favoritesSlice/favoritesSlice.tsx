@@ -125,7 +125,9 @@ const favoritesSlice = createSlice({
       state.favorites = arrayWithDeletedItem
     })
     builder.addCase(getFavorites.pending, state => {
-      state.isLoading = true
+      if (state.favorites.length === 0) {
+        state.isLoading = true
+      }
     })
     builder.addCase(getFavorites.fulfilled, (state, action) => {
       state.isLoading = false
