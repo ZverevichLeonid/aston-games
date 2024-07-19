@@ -1,4 +1,4 @@
-## Project status
+## Статус проекта
 
 <a href="https://github.com/ZverevichLeonid/aston-games/actions"><img src="https://github.com/ZverevichLeonid/aston-games/actions/workflows/main.yml/badge.svg" /></a>
 
@@ -8,11 +8,11 @@
 
 **API** - используется [OpenCriticApi](https://rapidapi.com/opencritic-opencritic-default/api/opencritic-api)
 
-## deploy
+## Деплой
 
-deployed on [vercel](https://aston-games.vercel.app/)
+[vercel](https://aston-games.vercel.app/)
 
-## local startup
+## Локальный запуск
 
 Install dependencies:
 ```javascript
