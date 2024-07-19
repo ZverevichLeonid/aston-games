@@ -85,4 +85,5 @@ npm run dev
       
 - [x] Используются [**мемоизированные селекторы** (createSelector)](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/store/favoritesSlice/favoritesSlice.tsx)
       
-- [x] Связь UI и бизнес-логики построена не через команды, а через [**события**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx) [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/pages/SignIn.tsx) и [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/Form/Form.tsx) 
+- [x] Связь UI и бизнес-логики построена не через команды, а через [**события**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx) (Компонент не знает что происходит в хендлерах, а только вызывает их по событию)
+И ещё [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/pages/SignIn.tsx) и [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/Form/Form.tsx) 
