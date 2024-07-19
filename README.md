@@ -6,7 +6,7 @@
 
 Сайт-агрегатор, собирающий рецензии о компьютерных играх и высчитывающий среднюю оценку для каждой игры вне зависимости от платформы.
 
-**API** - используется [OpenCriticApi]([https://docs.api.jikan.moe](https://rapidapi.com/opencritic-opencritic-default/api/opencritic-api))
+**API** - используется [OpenCriticApi](https://rapidapi.com/opencritic-opencritic-default/api/opencritic-api))
 
 ## deploy
 
