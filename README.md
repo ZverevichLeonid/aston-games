@@ -78,6 +78,6 @@ npm run dev
     - [x] Настроен CI: [CI](https://github.com/ZverevichLeonid/aston-games/blob/main/.github/workflows/main.yml)
         - [x] Проверки Eslint, TS, build
     - [x] Настроен CD: [Deploy Link](https://aston-games.vercel.app/)
-- [x] Реализована [**виртуализация списков**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/HistoryList/HistoryList.tsx) (Нужен список истории не меньше 6 единиц) 
+- [x] Реализована [**виртуализация списков**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/HistoryList/HistoryList.tsx) (Нужен список истории не меньше 6 единиц. Рендер списка только в видимой области пользователя) 
 - [x] Используются [**мемоизированные селекторы** (createSelector)](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/store/favoritesSlice/favoritesSlice.tsx) 
 - [x] Связь UI и бизнес-логики построена не через команды, а через [**события**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx) [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/pages/SignIn.tsx) и [**тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/Form/Form.tsx) 
