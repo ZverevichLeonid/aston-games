@@ -58,6 +58,7 @@ npm run dev
 - [x] Поиск не должен триггерить много запросов к серверу [**debounce**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx)
 
 - [x] Есть применение [lazy + Suspense](https://github.com/ZverevichLeonid/aston-games/blob/main/src/pages/HomePage.tsx)
+
 **Redux**
 
 - [x] Используем [**Modern Redux with Redux Toolkit**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/store/store.ts)
