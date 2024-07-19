@@ -23,26 +23,29 @@ export const FavoriteButton = ({
   name,
   score,
 }: FavoriteButtonProps) => {
+  const dispatch = useAppDispatch()
+
   const isFavorite = useAppSelector(state =>
     selectGameIsFavorite(state, gameId),
   )
+
   const isLoading = useAppSelector(selectIsLoading)
-  const dispatch = useAppDispatch()
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation()
+    if (isFavorite) {
+      dispatch(deleteGameFromFavorites({ gameId, image, name, score }))
+    } else {
+      dispatch(addGameToFavorites({ gameId, image, name, score }))
+    }
+  }
 
   return (
-    <button disabled={isLoading} className={s.box}>
+    <button onClick={handleClick} disabled={isLoading} className={s.box}>
       <img
         className={s.img}
         src={isFavorite ? btnActive : btnNonActive}
-        onClick={e => {
-          e.stopPropagation()
-          if (isFavorite) {
-            dispatch(deleteGameFromFavorites({ gameId, image, name, score }))
-          } else {
-            dispatch(addGameToFavorites({ gameId, image, name, score }))
-          }
-        }}
-        alt="favorite button"
+        alt="favorite toggle button"
       />
     </button>
   )
