@@ -72,7 +72,7 @@ npm run dev
 ### **2 уровень (необязательный)**
 
 - [x] Используется **TypeScript**
-- [x] Использование FireBase для учетных записей, избранного и истории поиска
+- [x] Использование [FireBase](https://github.com/ZverevichLeonid/aston-games/blob/main/src/firebase/db.config.ts) для учетных записей, избранного и истории поиска
 - [x] Настроен CI/CD:
     - [x] Настроен CI: [CI](https://github.com/ZverevichLeonid/aston-games/blob/main/.github/workflows/main.yml)
         - [x] Проверки Eslint, TS, build
