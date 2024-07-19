@@ -41,7 +41,7 @@ npm run dev
 **React**
 
 - [x] **Функциональные компоненты c хуками** в приоритете над классовыми
-- [x] Есть разделение на **[глупые](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/Form/Form.tsx)** и **[умные](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx)** компоненты
+- [x] Есть разделение на **[глупые](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchList/SearchList.tsx)** и **[умные](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/SearchBar/SearchBar.tsx)** компоненты
 
 - [x] Есть [**рендеринг списков**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/components/GamesList/GamesList.tsx)
 
