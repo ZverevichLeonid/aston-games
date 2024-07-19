@@ -7,49 +7,47 @@ import {
   arrayRemove,
 } from 'firebase/firestore'
 import { db } from '../../../firebase/db.config'
-import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-export const addUrlToHistory: AsyncThunk<
-  void,
-  {
-    id: string
-    url: string
-  },
-  {
-    [fields: string]: void // костыль с типами, ts2742
-  }
-> = createAsyncThunk(
-  'history/addUrlToHistory',
-  async ({ id, url }: { id: string; url: string }) => {
-    const docRef = doc(db, 'users', id)
-    const docSnap = await getDoc(docRef)
-    if (!docSnap.exists()) {
-      await setDoc(docRef, {
-        history: [url],
-      })
-    } else {
-      await updateDoc(docRef, {
-        history: arrayUnion(url),
-      })
-    }
-  },
-)
+export interface HistoryState {
+  history: string[]
+  isLoading: boolean
+}
 
-export const deleteUrlHistory: AsyncThunk<
-  void,
-  {
-    id: string
-    url: string
-  },
-  {
-    [fields: string]: void // костыль с типами, ts2742
+export const addUrlToHistory = createAsyncThunk<
+  void, // Return type of the payload creator
+  { url: string }, // First argument to the payload creator
+  { state: RootState } // Types for ThunkAPI
+>('history/addUrlToHistory', async ({ url }: { url: string }, { getState }) => {
+  const state = getState()
+  const id = state.user.id
+  const docRef = doc(db, 'users', id!)
+  const docSnap = await getDoc(docRef)
+
+  if (!docSnap.exists()) {
+    await setDoc(docRef, {
+      history: [url],
+    })
+  } else {
+    await updateDoc(docRef, {
+      history: arrayUnion(url),
+    })
   }
-> = createAsyncThunk(
+})
+
+export const deleteUrlHistory = createAsyncThunk<
+  void,
+  { url: string },
+  { state: RootState }
+>(
   'history/deleteUrlHistory',
-  async ({ id, url }: { id: string; url: string }) => {
-    const docRef = doc(db, 'users', id)
+  async ({ url }: { url: string }, { getState }) => {
+    const state = getState()
+    const id = state.user.id
+    const docRef = doc(db, 'users', id!)
     const docSnap = await getDoc(docRef)
+
     if (docSnap.exists()) {
       await updateDoc(docRef, {
         history: arrayRemove(url),
@@ -59,7 +57,7 @@ export const deleteUrlHistory: AsyncThunk<
 )
 
 export const getHistory = createAsyncThunk<
-  string[] | null,
+  string[],
   void,
   { state: RootState }
 >('history/getHistory', async (_, { getState }) => {
@@ -67,6 +65,7 @@ export const getHistory = createAsyncThunk<
   const id = state.user.id
   const docRef = doc(db, 'users', id!)
   const docSnap = await getDoc(docRef)
+
   if (docSnap.exists()) {
     const history = docSnap.data()
     return Array.isArray(history.history) ? history.history : []
@@ -77,10 +76,7 @@ export const getHistory = createAsyncThunk<
 
 const initialState: HistoryState = {
   history: [],
-}
-
-export interface HistoryState {
-  history: string[]
+  isLoading: false,
 }
 
 const historySlice = createSlice({
@@ -92,16 +88,28 @@ const historySlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(addUrlToHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(addUrlToHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       state.history.push(action.meta.arg.url)
     })
+    builder.addCase(deleteUrlHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(deleteUrlHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       const arrayWithDeletedItem = state.history.filter(
         item => item !== action.meta.arg.url,
       )
       state.history = arrayWithDeletedItem
     })
+    builder.addCase(getHistory.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(getHistory.fulfilled, (state, action) => {
+      state.isLoading = false
       if (action.payload) {
         state.history = action.payload
       } else {
@@ -111,9 +119,10 @@ const historySlice = createSlice({
   },
   selectors: {
     selectAllHistory: state => state.history,
+    selectIsLoading: state => state.isLoading,
   },
 })
 
 export const { removeHistory } = historySlice.actions
 export const { reducer } = historySlice
-export const { selectAllHistory } = historySlice.selectors
+export const { selectAllHistory, selectIsLoading } = historySlice.selectors

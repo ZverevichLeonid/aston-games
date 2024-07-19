@@ -1,9 +1,9 @@
 import { SearchResult } from '../SearchResult/SearchResult'
 import { gameApi } from '../../../redux/services/gameService'
-import classNames from 'classnames'
-import s from './SearchDropDown.module.scss'
 import { useContext } from 'react'
 import { ThemeContext } from '../../ThemeProvider/ThemeProvider'
+import classNames from 'classnames'
+import s from './SearchDropDown.module.scss'
 
 interface SearchDropDownProps {
   queryParams: string

@@ -14,7 +14,7 @@ export const SearchBar = () => {
   const [searchParams] = useSearchParams()
   const [inputValue, setInputValue] = useState(searchParams.get('query') || '')
   const [queryParams] = useDebounce(inputValue, 500)
-  const { isAuth, id } = useAuth()
+  const { isAuth } = useAuth()
   const { theme } = useContext(ThemeContext)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -38,7 +38,7 @@ export const SearchBar = () => {
     e.preventDefault()
     if (inputValue.length > 0) {
       if (isAuth) {
-        dispatch(addUrlToHistory({ id: id!, url: inputValue }))
+        dispatch(addUrlToHistory({ url: inputValue }))
       }
       navigate(`/search?query=${inputValue}`)
     }

@@ -10,6 +10,18 @@ import { db } from '../../../firebase/db.config'
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
+export interface FavoritesState {
+  favorites: Favorite[]
+  isLoading: boolean
+}
+
+export interface Favorite {
+  name: string
+  image: string
+  score: string
+  gameId: string
+}
+
 export const addGameToFavorites = createAsyncThunk<
   void,
   Favorite,
@@ -81,17 +93,7 @@ export const getFavorites = createAsyncThunk<
 
 const initialState: FavoritesState = {
   favorites: [],
-}
-
-export interface FavoritesState {
-  favorites: Favorite[]
-}
-
-export interface Favorite {
-  name: string
-  image: string
-  score: string
-  gameId: string
+  isLoading: false,
 }
 
 const favoritesSlice = createSlice({
@@ -103,18 +105,30 @@ const favoritesSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(addGameToFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(addGameToFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       state.favorites.push({
         ...action.meta.arg,
       })
     })
+    builder.addCase(deleteGameFromFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(deleteGameFromFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       const arrayWithDeletedItem = state.favorites.filter(
         item => item.gameId !== action.meta.arg.gameId,
       )
       state.favorites = arrayWithDeletedItem
     })
+    builder.addCase(getFavorites.pending, state => {
+      state.isLoading = true
+    })
     builder.addCase(getFavorites.fulfilled, (state, action) => {
+      state.isLoading = false
       if (action.payload) {
         state.favorites = action.payload
       } else {
@@ -123,13 +137,14 @@ const favoritesSlice = createSlice({
     })
   },
   selectors: {
+    selectIsLoading: state => state.isLoading,
     selectAllFavorites: state => state.favorites,
     selectGameIsFavorite: createSelector(
       [
         (state: FavoritesState) => state.favorites,
         (_: FavoritesState, gameId: string) => gameId,
       ],
-      (favorites, gameId) => {
+      (favorites: Favorite[], gameId: string): boolean => {
         return favorites.some(game => game.gameId === gameId)
       },
     ),
@@ -138,5 +153,5 @@ const favoritesSlice = createSlice({
 
 export const { removeFavorites } = favoritesSlice.actions
 export const { reducer } = favoritesSlice
-export const { selectAllFavorites, selectGameIsFavorite } =
+export const { selectAllFavorites, selectGameIsFavorite, selectIsLoading } =
   favoritesSlice.selectors

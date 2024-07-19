@@ -7,10 +7,7 @@ import {
   setUser,
 } from '../redux/store/userSlice/userSlice'
 import { removeHistory } from '../redux/store/historySlice/historySlice'
-import {
-  getFavorites,
-  removeFavorites,
-} from '../redux/store/favoritesSlice/favoritesSlice'
+import { removeFavorites } from '../redux/store/favoritesSlice/favoritesSlice'
 
 export function useAuth() {
   const { email, id } = useAppSelector(selectUser)
@@ -34,7 +31,6 @@ export function useAuth() {
           id: user.uid,
         }
         dispatch(setUser(userData))
-        dispatch(getFavorites())
       } else {
         dispatch(removeUser())
         dispatch(removeHistory())

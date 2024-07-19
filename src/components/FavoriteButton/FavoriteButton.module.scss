@@ -11,8 +11,12 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
+  border: none;
   &:hover {
     scale: 1.1;
+  }
+  &:disabled {
+    cursor: wait;
   }
 }
 .active {

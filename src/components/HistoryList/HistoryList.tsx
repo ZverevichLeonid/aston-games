@@ -1,33 +1,34 @@
 import {
-  getHistory,
   selectAllHistory,
+  selectIsLoading,
 } from '../../redux/store/historySlice/historySlice'
-import { useAuth } from '../../hooks/useAuth'
-import { useEffect } from 'react'
 import { HistorySingleItem } from './HistorySingleItem/HistorySingleItem'
-import { useAppDispatch } from '../../hooks/reduxHooks'
 import { useAppSelector } from '../../hooks/reduxHooks'
+import { FixedSizeList as List } from 'react-window'
+import { Loader } from '../Loader/Loader'
 import s from './HistoryList.module.scss'
 
 export const HistoryList = () => {
-  const { id } = useAuth()
   const history = useAppSelector(selectAllHistory)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(getHistory())
-  }, [id, dispatch])
-
+  const isLoading = useAppSelector(selectIsLoading)
   return (
     <section>
       <div className="container">
         <h1 className={s.title}>Search history</h1>
-        <div className={s.list}>
-          {history.length > 0 ? (
-            history.map(url => {
-              return <HistorySingleItem key={url} url={url} id={id!} />
-            })
-          ) : (
+        <div>
+          {isLoading && <Loader />}
+          {history.length > 0 && (
+            <List
+              itemData={{ history: history }}
+              itemSize={53}
+              width={1100}
+              height={250}
+              itemCount={history.length}
+            >
+              {HistorySingleItem}
+            </List>
+          )}
+          {!isLoading && history.length === 0 && (
             <span className={s.empty}>History list is empty</span>
           )}
         </div>

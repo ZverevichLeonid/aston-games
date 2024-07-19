@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import s from './SearchResult.module.scss'
 import { useContext } from 'react'
 import { ThemeContext } from '../../ThemeProvider/ThemeProvider'
+import s from './SearchResult.module.scss'
 
 interface SearchResultProps {
   id: number
