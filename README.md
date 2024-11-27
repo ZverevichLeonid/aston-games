@@ -9,7 +9,7 @@
 **API** - используется [OpenCriticApi](https://rapidapi.com/opencritic-opencritic-default/api/opencritic-api)
 
 ## Деплой
-
+##### firebase отвалился из-за простоя, смотрите код
 [vercel](https://aston-games.vercel.app/)
 
 ## Локальный запуск
@@ -70,7 +70,7 @@ npm run dev
 
 - [x] Используется [**Transforming Responses**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/utils/transformGamesData.ts) [**Тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/services/gameService.ts)
 
-
+**Другое**
 
 - [x] Используется **TypeScript**
     
