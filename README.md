@@ -32,7 +32,7 @@ npm run dev
 
 ## Реализованные требования:
 
-### **1 уровень (обязательный - необходимый минимум)**
+
 
 - [x] Реализованы **Требования к функциональности**
 
@@ -70,7 +70,7 @@ npm run dev
 
 - [x] Используется [**Transforming Responses**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/utils/transformGamesData.ts) [**Тут**](https://github.com/ZverevichLeonid/aston-games/blob/main/src/redux/services/gameService.ts)
 
-### **2 уровень (необязательный)**
+
 
 - [x] Используется **TypeScript**
     
